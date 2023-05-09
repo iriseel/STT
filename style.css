@@ -101,3 +101,46 @@ body {
 .font:hover .font_styles {
 	display: block;
 }
+
+.slider-container {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	padding: 20px;
+	/* background-color: #f0f0f0; */
+	z-index: 100;
+}
+
+label {
+	writing-mode: vertical-lr;
+	text-orientation:sideways;
+	margin-bottom: 10px;
+}
+
+input[type=range][orient=vertical] {
+	writing-mode: bt-lr;
+	/* IE */
+	-webkit-appearance: slider-vertical;
+	/* Chromium */
+	
+	width: 8px;
+	height: 175px;
+	padding: 0 5px;
+	
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #333;fill: black;
+		stroke: none;
+}

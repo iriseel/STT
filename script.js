@@ -52,41 +52,48 @@ window.onload = function () {
     const Spritch_AVF = document.querySelector(".Spritch .AVF");
     const Spritch_BVF = document.querySelector(".Spritch .BVF");
     const Subbookkeeper = document.querySelector(".Subbookkeeper");
+    const fonts = document.querySelectorAll(".font");
+    const variable_fonts = document.querySelectorAll(".variable");
+    // ??Figure out how to pinpoint nonvariable fonts
+    // const nonVariableFonts = Array.from(fonts).filter(
+    //     (font) => !font.classList.contains("variable")
+    // );
 
     const resultContainer = document.getElementById("result-container");
     const result = document.getElementById("result");
 
-    // let wordCount = 0;
+    const sliderContainer = document.querySelector(".slider-container");
+    const widthSlider = document.getElementById("width-slider");
 
-    let currentUrl = window.location.href;
-    let newUrl = currentUrl;
-    // Get the query string from the URL
-    const queryString = window.location.search;
+    let currentFontFamily = localStorage.getItem("savedFontFamily");
+    let currentFontSize = localStorage.getItem("savedFontSize");
+    let currentFontVariation = localStorage.getItem("savedFontVariation");
+    let currentSliderValue = localStorage.getItem("savedSliderValue");
+    result.style.fontFamily = currentFontFamily;
+    result.style.fontSize = currentFontSize;
+    result.style.fontVariationSettings = currentFontVariation;
+    widthSlider.value = currentSliderValue;
+    console.log(currentFontFamily, currentFontSize, currentFontVariation);
 
-    // Parse the query string to get an object of query parameters and their values
-    const queryParams = new URLSearchParams(queryString);
-
-    // Get the value of the 'myVar' query parameter
-    const savedFont = queryParams.get("savedFont");
-    // const savedFontSize = queryParams.get("savedFontSize");
-
-    if (savedFont) {
-        result.style.fontFamily = `"${savedFont}"`;
-        console.log(savedFont);
-        // console.log("font is", result.style.fontFamily);
+    //if current font is a variable font, show the slider
+    if (
+        currentFontFamily == "DeadisBetter" ||
+        currentFontFamily == "HeartBeat_inside" ||
+        currentFontFamily == "HeartBeat_merged" ||
+        currentFontFamily == "HeartBeat_outside" ||
+        currentFontFamily == "HeartBeat_stroke" ||
+        currentFontFamily == "Subbookkeeper" ||
+        currentFontFamily == "Dirts" ||
+        currentFontFamily == "Wifi_vfvf" ||
+        currentFontFamily == "Signal_Inflate" ||
+        currentFontFamily == "Spritch_AVF" ||
+        currentFontFamily == "Spritch_BVF" ||
+        currentFontFamily == "Signal_Grow"
+    ) {
+        sliderContainer.style.display = "flex";
+    } else {
+        sliderContainer.style.display = "none";
     }
-
-    // if (savedFontSize) {
-    //     result.style.fontSize = `"${savedFontSize}"`;
-    //     console.log("savedFontSize", savedFontSize);
-    // } else {
-    //     result.style.fontSize = `3em`;
-    // }
-
-    let currentFontFamily = result.style.fontFamily;
-    // let currentFontSize = result.style.fontSize;
-    let currentFontSize = localStorage.getItem("currentFontSize") || "3em";
-    // console.log(currentFontFamily, currentFontSize);
 
     if ("webkitSpeechRecognition" in window) {
         var recognition = new webkitSpeechRecognition();
@@ -107,20 +114,22 @@ window.onload = function () {
                     finalTranscript += transcript;
                     wordCount = interimTranscript.split(" ").length;
 
-                    // Check if the URL already contains a 'savedFont' query parameter
-                    if (currentUrl.includes("?savedFont=")) {
-                        // Remove the existing 'savedFont' query parameter from the URL
-                        currentUrl = currentUrl.replace(/\?savedFont=.*/, "");
-                    }
+                    localStorage.setItem("savedFontFamily", currentFontFamily);
 
-                    // Add a query parameter to the URL
-                    newUrl =
-                        currentUrl +
-                        `?savedFont=${currentFontFamily}&savedFontSize=${currentFontSize}`;
-                    // console.log(currentFontFamily, newUrl);
+                    localStorage.setItem("savedFontSize", currentFontSize);
+
+                    localStorage.setItem(
+                        "savedFontVariation",
+                        currentFontVariation
+                    );
+
+                    localStorage.setItem(
+                        "savedSliderValue",
+                        currentSliderValue
+                    );
 
                     // Reload the page with the new URL after a pause
-                    setTimeout(() => (window.location.href = newUrl), 500);
+                    setTimeout(() => location.reload(), 500);
                 } else {
                     interimTranscript += transcript;
                     wordCount = interimTranscript.split(" ").length;
@@ -137,6 +146,12 @@ window.onload = function () {
         };
 
         recognition.onerror = function (event) {};
+
+        //speech recognition automatically turns off after some silence, so restarting it on end for continuous listening
+        recognition.addEventListener("end", () => {
+            // console.log("Speech recognition ended. Restarting...");
+            recognition.start();
+        });
     } else {
         result.innerHTML =
             "Your browser is not supported. Please download Google chrome or Update your Google chrome!!";
@@ -376,6 +391,18 @@ window.onload = function () {
         update_font();
     });
 
+    // fonts.forEach(function (font) {
+    //     font.addEventListener("click", function () {
+    //         sliderContainer.style.display = "none";
+    //     });
+    // });
+
+    variable_fonts.forEach(function (font) {
+        font.addEventListener("click", function () {
+            sliderContainer.style.display = "flex";
+        });
+    });
+
     function reset() {
         result.style.fontSize = "3em";
     }
@@ -383,14 +410,33 @@ window.onload = function () {
     function update_font() {
         currentFontFamily = result.style.fontFamily;
         currentFontSize = result.style.fontSize;
-        console.log("currentFontSize", currentFontSize);
     }
+
+    // Update the font width when the slider value changes
+    widthSlider.addEventListener("input", function () {
+        let variableValue = widthSlider.value;
+        if (
+            currentFontFamily == "DeadisBetter" ||
+            currentFontFamily == "HeartBeat_inside" ||
+            currentFontFamily == "HeartBeat_merged" ||
+            currentFontFamily == "HeartBeat_outside" ||
+            currentFontFamily == "HeartBeat_stroke" ||
+            currentFontFamily == "Subbookkeeper"
+        ) {
+            result.style.fontVariationSettings = `"wdth" ${variableValue}`;
+        } else if (
+            currentFontFamily == "Dirts" ||
+            currentFontFamily == "Wifi_vfvf" ||
+            currentFontFamily == "Signal_Inflate" ||
+            currentFontFamily == "Spritch_AVF" ||
+            currentFontFamily == "Spritch_BVF"
+        ) {
+            result.style.fontVariationSettings = `"wght" ${variableValue}`;
+            // console.log("spritch");
+        } else if (currentFontFamily == "Signal_Grow") {
+            result.style.fontVariationSettings = `"wght" 100, "HGHT" ${variableValue}`;
+        }
+        currentFontVariation = result.style.fontVariationSettings;
+        currentSliderValue = widthSlider.value;
+    });
 };
-
-// add event listener to resize the result container when the window is resized
-// window.addEventListener("resize", function () {
-//     resultContainer.style.height = window.innerHeight / 2 + "px";
-// });
-
-// set the initial height of the result container
-// resultContainer.style.height = window.innerHeight / 2 + "px";

@@ -25,11 +25,13 @@
 
 @font-face {
     font-family: 'DeadisBetter';
+    /* font-variation-settings: "wdth" 1000; */
     src: url('fonts/00_DeadisBetter/FinalDeadisBetterV1VF.ttf');
 }
 
 @font-face {
     font-family: 'Dirts';
+    /* font-variation-settings: "wght" 1000; */
     src: url('fonts/00_Dirts/FinalDirtsVF.ttf');
 }
 
@@ -50,21 +52,25 @@
 
 @font-face {
     font-family: 'HeartBeat_inside';
+    /* font-variation-settings: "wdth" 900; */
     src: url('fonts/00_HeartBeat/FinalHeartbeatInsideVF.ttf');
 }
 
 @font-face {
     font-family: 'HeartBeat_merged';
+    /* font-variation-settings: "wdth" 900; */
     src: url('fonts/00_HeartBeat/FinalHeartbeatMergedVF.ttf');
 }
 
 @font-face {
     font-family: 'HeartBeat_outside';
+    /* font-variation-settings: "wdth" 900; */
     src: url('fonts/00_HeartBeat/FinalHeartbeatOutsideVF.ttf');
 }
 
 @font-face {
     font-family: 'HeartBeat_stroke';
+    /* font-variation-settings: "wdth" 900; */
     src: url('fonts/00_HeartBeat/FinalHeartbeatStrokeVF.ttf');
 }
 
@@ -110,6 +116,7 @@
 
 @font-face {
     font-family: 'Wifi_vfvf';
+    /* font-variation-settings: "wght" 800; */
     src: url('fonts/00_Ieee802.11b/FinalWifiVFVF.ttf');
 }
 
@@ -160,25 +167,32 @@
 
 @font-face {
     font-family: 'Signal_Grow';
+    /* weight 0 - 900 height 0 - 900 */
+    /* font-variation-settings: "wght" 100, "HGHT" 900; */
     src: url('fonts/00_signal_Grow/FinalSignalGrowVF.ttf');
 }
 
 @font-face {
     font-family: 'Signal_Inflate';
+    /* weight 0 - 900 */
+    /* font-variation-settings: "wght" 120; */
     src: url('fonts/00_signal_Inflate/FinalsignalinflateVF.ttf');
 }
 
 @font-face {
     font-family: 'Spritch_AVF';
+    /* font-variation-settings: "wght" 1200; */
     src: url('fonts/00_Spritch/FinalSpritchAVF.ttf');
 }
 
 @font-face {
     font-family: 'Spritch_BVF';
+    /* font-variation-settings: "wght" 1200; */
     src: url('fonts/00_Spritch/FinalSpritchBVF.ttf');
 }
 
 @font-face {
     font-family: 'Subbookkeeper';
+    /* font-variation-settings: "wdth" 1000; */
     src: url('fonts/00_Subbookkeeper/FinalSubbookkeeperVF.ttf');
 }
