@@ -1,21 +1,5 @@
-@font-face {
-	font-family: 'fairgame';
-	src: url('fonts/fairgame.otf');
-}
-
-@font-face {
-font-family: 'paaaperchain';
-src: url('fonts/Amstel-book.otf');
-}
-
-@font-face {
-font-family: 'asthey';
-src: url('fonts/Asthey1brushdraw-Medium.otf');
-}
-
-@font-face {
-	font-family: 'Billboards2';
-	src: url('fonts/Billboards2-Regular.otf');
+:root {
+	--fontSize: 40px;
 }
 
 * {
@@ -26,15 +10,17 @@ src: url('fonts/Asthey1brushdraw-Medium.otf');
 
 body {
 	background-color: black;
-	font-size: 60px;
+	font-size: var(--fontSize);
 	color: white;
 	margin: 0;
 	padding: 0;
+	font-family:"AsTheyDraw_medium";
 }
 #container {
 	/* display: flex;
 	justify-content: center;
 	align-items: center; */
+	padding: 0 1em;
 	width:100vw;
 	height: 100vh;
 }
@@ -56,7 +42,9 @@ body {
 	outline: none;
 	background-color: transparent;
 	font-size: 3em;
+	line-height:1.1em;
 	text-align: center;
+	
 }
 
 .font_choices {
@@ -64,41 +52,52 @@ body {
 	left: 1rem;
 	bottom:1rem;
 	display:flex;
-	font-size:.7em;
+	font-size:.5em;
+	width:100%;
 	display:flex;
+	flex-flow: row wrap;
 	align-items: end;
+	color:#999;
 }
 
 .font {
 	margin: 0 1rem;
 	cursor:pointer;
+	position:relative;
 }
 
 .font_name, .font_styles {
 	display:block;
 }
 
-.fair_game {
-	font-family: 'fairgame';
-}
-
-.paaaperchain {
-	font-family: 'paaaperchain';
-}
-
-.as_they {
-	font-family: 'asthey';
-}
-
-.billboards {
-	font-family: 'Billboards2';
-}
-
 .font_styles {
-	display:none;
+	font-size: .75em;
+	display: none;
+
+	position: absolute;
+	left:0;
+	bottom: 100%;
+	color: white;
+	text-shadow:
+		-2px -2px 0 #000,
+		2px -2px 0 #000,
+		-2px 2px 0 #000,
+		2px 2px 0 #000;
+	
+
+	width: 100vw;
+	/* background:blue; */
+}
+
+.font_style {
+	min-width:fit-content;
+	/* background:red; */
+}
+
+.font:hover {
+	color:white;
 }
 
 .font:hover .font_styles {
-	display:block;
-	width:fit-content;
+	display: block;
 }

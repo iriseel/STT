@@ -1,0 +1,184 @@
+@font-face {
+    font-family: 'AsTheyDraw_italic';
+    src: url('fonts/00_AsTheyDraw/FinalAsTheyDraw-italic.otf');
+}
+
+@font-face {
+    font-family: 'AsTheyDraw_medium';
+    src: url('fonts/00_AsTheyDraw/FinalAsTheyDraw-Medium.otf');
+}
+
+@font-face {
+    font-family: 'AsTheyDrawMonomono';
+    src: url('fonts/00_AsTheyDrawMonomono/FinalAsTheyDrawMonomono-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Billboards_regular';
+    src: url('fonts/00_Billboards/FinalBillboards-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Billboards_stencil';
+    src: url('fonts/00_Billboards/FinalBillboards-Stencil.otf');
+}
+
+@font-face {
+    font-family: 'DeadisBetter';
+    src: url('fonts/00_DeadisBetter/FinalDeadisBetterV1VF.ttf');
+}
+
+@font-face {
+    font-family: 'Dirts';
+    src: url('fonts/00_Dirts/FinalDirtsVF.ttf');
+}
+
+@font-face {
+    font-family: 'FairGame_regular';
+    src: url('fonts/00_FairGame/FinalFairGame-regular.otf');
+}
+
+@font-face {
+    font-family: 'FairGame_italic';
+    src: url('fonts/00_FairGame/FinalFairGame-italic.otf');
+}
+
+@font-face {
+    font-family: 'FairGame_rotated';
+    src: url('fonts/00_FairGame/FinalFairGame-rotated.otf');
+}
+
+@font-face {
+    font-family: 'HeartBeat_inside';
+    src: url('fonts/00_HeartBeat/FinalHeartbeatInsideVF.ttf');
+}
+
+@font-face {
+    font-family: 'HeartBeat_merged';
+    src: url('fonts/00_HeartBeat/FinalHeartbeatMergedVF.ttf');
+}
+
+@font-face {
+    font-family: 'HeartBeat_outside';
+    src: url('fonts/00_HeartBeat/FinalHeartbeatOutsideVF.ttf');
+}
+
+@font-face {
+    font-family: 'HeartBeat_stroke';
+    src: url('fonts/00_HeartBeat/FinalHeartbeatStrokeVF.ttf');
+}
+
+@font-face {
+    font-family: 'Wifi_bold';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-Bold.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_bold-extended';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-BoldExtended.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_bold-extended-italic';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-BoldExtendedItalic.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_bold-italic';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-BoldItalic.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_condensed';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-Condensed.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_condensed-italic';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-CondensedItalic.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_regular';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-Regular.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_regular-italic';
+    src: url('fonts/00_Ieee802.11b/FinalWifiOTF-RegularItalic.otf');
+}
+
+@font-face {
+    font-family: 'Wifi_vfvf';
+    src: url('fonts/00_Ieee802.11b/FinalWifiVFVF.ttf');
+}
+
+@font-face {
+    font-family: 'OpenStudios_body';
+    src: url('fonts/00_OpenStudios_body/FinaOpenstudiosBody-FlowerandEarth.otf.otf');
+}
+
+@font-face {
+    font-family: 'OpenStudios_headline';
+    src: url('fonts/00_OpenStudios_Headline/FinaOpenstudiosHeadline-Regular.otf');
+}
+
+@font-face {
+    font-family: 'PaaaperChain';
+    src: url('fonts/00_PaaaperChain/FinalPaaaperChain-book.otf');
+}
+
+@font-face {
+    font-family: 'PoliticsofResponse_0';
+    src: url('fonts/00_PoliticsofResponse/FinalPoliticsofRespond-0.otf');
+}
+
+@font-face {
+    font-family: 'PoliticsofResponse_100';
+    src: url('fonts/00_PoliticsofResponse/FinalPoliticsofRespond-100.otf');
+}
+
+@font-face {
+    font-family: 'PoliticsofResponse_300';
+    src: url('fonts/00_PoliticsofResponse/FinalPoliticsofRespond-300.otf');
+}
+
+@font-face {
+    font-family: 'PoliticsofResponse_500';
+    src: url('fonts/00_PoliticsofResponse/FinalPoliticsofRespond-500.otf');
+}
+
+@font-face {
+    font-family: 'PoliticsofResponse_700';
+    src: url('fonts/00_PoliticsofResponse/FinalPoliticsofRespond-700.otf');
+}
+
+@font-face {
+    font-family: 'PoliticsofResponse_1000';
+    src: url('fonts/00_PoliticsofResponse/FinalPoliticsofRespond-1000.otf');
+}
+
+@font-face {
+    font-family: 'Signal_Grow';
+    src: url('fonts/00_signal_Grow/FinalSignalGrowVF.ttf');
+}
+
+@font-face {
+    font-family: 'Signal_Inflate';
+    src: url('fonts/00_signal_Inflate/FinalsignalinflateVF.ttf');
+}
+
+@font-face {
+    font-family: 'Spritch_AVF';
+    src: url('fonts/00_Spritch/FinalSpritchAVF.ttf');
+}
+
+@font-face {
+    font-family: 'Spritch_BVF';
+    src: url('fonts/00_Spritch/FinalSpritchBVF.ttf');
+}
+
+@font-face {
+    font-family: 'Subbookkeeper';
+    src: url('fonts/00_Subbookkeeper/FinalSubbookkeeperVF.ttf');
+}
