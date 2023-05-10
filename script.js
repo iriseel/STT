@@ -1,4 +1,6 @@
 window.onload = function () {
+    // localStorage.clear();
+
     const font_choices = document.querySelectorAll(".font");
     const AsTheyDraw_italic = document.querySelector(".AsTheyDraw .italic");
     const AsTheyDraw_medium = document.querySelector(".AsTheyDraw .medium");
@@ -53,7 +55,7 @@ window.onload = function () {
     const Spritch_BVF = document.querySelector(".Spritch .BVF");
     const Subbookkeeper = document.querySelector(".Subbookkeeper");
     const fonts = document.querySelectorAll(".font");
-    const variable_fonts = document.querySelectorAll(".variable");
+    // const variable_fonts = document.querySelectorAll(".variable");
     // ??Figure out how to pinpoint nonvariable fonts
     // const nonVariableFonts = Array.from(fonts).filter(
     //     (font) => !font.classList.contains("variable")
@@ -75,24 +77,33 @@ window.onload = function () {
     widthSlider.value = currentSliderValue;
     console.log(currentFontFamily, currentFontSize, currentFontVariation);
 
-    //if current font is a variable font, show the slider
-    if (
-        currentFontFamily == "DeadisBetter" ||
-        currentFontFamily == "HeartBeat_inside" ||
-        currentFontFamily == "HeartBeat_merged" ||
-        currentFontFamily == "HeartBeat_outside" ||
-        currentFontFamily == "HeartBeat_stroke" ||
-        currentFontFamily == "Subbookkeeper" ||
-        currentFontFamily == "Dirts" ||
-        currentFontFamily == "Wifi_vfvf" ||
-        currentFontFamily == "Signal_Inflate" ||
-        currentFontFamily == "Spritch_AVF" ||
-        currentFontFamily == "Spritch_BVF" ||
-        currentFontFamily == "Signal_Grow"
-    ) {
-        sliderContainer.style.display = "flex";
+    let FirstUse;
+    // console.log("FirstUse", FirstUse);
+
+    if (!FirstUse) {
+        FirstUse = {};
+        // Set the initial value of isFirstUse for each element
+        FirstUse["DeadisBetter"] = true;
+        FirstUse["HeartBeat_inside"] = true;
+        FirstUse["HeartBeat_merged"] = true;
+        FirstUse["HeartBeat_outside"] = true;
+        FirstUse["HeartBeat_stroke"] = true;
+        FirstUse["Subbookkeeper"] = true;
+        FirstUse["Dirts"] = true;
+        FirstUse["Wifi_vfvf"] = true;
+        FirstUse["Signal_Inflate"] = true;
+        FirstUse["Spritch_AVF"] = true;
+        FirstUse["Spritch_BVF"] = true;
+        FirstUse["Signal_Grow"] = true;
+        // console.log("first", FirstUse["DeadisBetter"]);
     } else {
-        sliderContainer.style.display = "none";
+        //localStorage stores data as strings, so when you retrieve the value of "savedFirstUse", it will be a string. To convert it back into a JavaScript object, you can use JSON.parse().
+        FirstUse = JSON.parse(localStorage.getItem("savedFirstUse"));
+        // console.log("FirstUse", FirstUse["DeadisBetter"]);
+    }
+    console.log("********************************");
+    for (let key in FirstUse) {
+        console.log(`${key}: ${FirstUse[key]}`);
     }
 
     if ("webkitSpeechRecognition" in window) {
@@ -127,6 +138,8 @@ window.onload = function () {
                         "savedSliderValue",
                         currentSliderValue
                     );
+
+                    localStorage.setItem("savedFirstUse", FirstUse);
 
                     // Reload the page with the new URL after a pause
                     setTimeout(() => location.reload(), 500);
@@ -189,19 +202,19 @@ window.onload = function () {
         update_font();
     });
 
-    DeadisBetter.addEventListener("click", function () {
+    DeadisBetter.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'DeadisBetter'";
+        result.style.fontSize = "4em";
 
-        result.style.fontSize = "5em";
-        update_font();
+        update_font(e.target, "DeadisBetter");
     });
 
-    Dirts.addEventListener("click", function () {
+    Dirts.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Dirts'";
         result.style.fontSize = "4em";
-        update_font();
+        update_font(e.target, "Dirts");
     });
 
     FairGame_regular.addEventListener("click", function () {
@@ -222,32 +235,32 @@ window.onload = function () {
         update_font();
     });
 
-    HeartBeat_inside.addEventListener("click", function () {
+    HeartBeat_inside.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'HeartBeat_inside'";
         result.style.fontSize = "6em";
-        update_font();
+        update_font(e.target, "HeartBeat_inside");
     });
 
-    HeartBeat_merged.addEventListener("click", function () {
+    HeartBeat_merged.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'HeartBeat_merged'";
         result.style.fontSize = "6em";
-        update_font();
+        update_font(e.target, "HeartBeat_merged");
     });
 
-    HeartBeat_outside.addEventListener("click", function () {
+    HeartBeat_outside.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'HeartBeat_outside'";
         result.style.fontSize = "6em";
-        update_font();
+        update_font(e.target, "HeartBeat_outside");
     });
 
-    HeartBeat_stroke.addEventListener("click", function () {
+    HeartBeat_stroke.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'HeartBeat_stroke'";
         result.style.fontSize = "6em";
-        update_font();
+        update_font(e.target, "HeartBeat_stroke");
     });
 
     Wifi_bold.addEventListener("click", function () {
@@ -298,10 +311,10 @@ window.onload = function () {
         update_font();
     });
 
-    Wifi_vfvf.addEventListener("click", function () {
+    Wifi_vfvf.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Wifi_vfvf'";
-        update_font();
+        update_font(e.target, "Wifi_vfvf");
     });
 
     OpenStudios_body.addEventListener("click", function () {
@@ -326,69 +339,69 @@ window.onload = function () {
     PoliticsofResponse_100.addEventListener("click", function () {
         reset();
         result.style.fontFamily = "'PoliticsofResponse_0'";
-        result.style.fontSize = "8em";
+        result.style.fontSize = "5em";
         update_font();
     });
 
     PoliticsofResponse_300.addEventListener("click", function () {
         reset();
         result.style.fontFamily = "'PoliticsofResponse_300'";
-        result.style.fontSize = "8em";
+        result.style.fontSize = "5em";
         update_font();
     });
 
     PoliticsofResponse_500.addEventListener("click", function () {
         reset();
         result.style.fontFamily = "'PoliticsofResponse_500'";
-        result.style.fontSize = "8em";
+        result.style.fontSize = "5em";
         update_font();
     });
 
     PoliticsofResponse_700.addEventListener("click", function () {
         reset();
         result.style.fontFamily = "'PoliticsofResponse_700'";
-        result.style.fontSize = "8em";
+        result.style.fontSize = "5em";
         update_font();
     });
 
     PoliticsofResponse_1000.addEventListener("click", function () {
         reset();
         result.style.fontFamily = "'PoliticsofResponse_1000'";
-        result.style.fontSize = "8em";
+        result.style.fontSize = "5em";
         update_font();
     });
 
-    Signal_Grow.addEventListener("click", function () {
+    Signal_Grow.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Signal_Grow'";
-        update_font();
+        update_font(e.target, "Signal_Grow");
     });
 
-    Signal_Inflate.addEventListener("click", function () {
+    Signal_Inflate.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Signal_Inflate'";
-        update_font();
+        update_font(e.target, "Signal_Inflate");
     });
 
-    Spritch_AVF.addEventListener("click", function () {
+    Spritch_AVF.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Spritch_AVF'";
         result.style.fontSize = "5em";
-        update_font();
+        update_font(e.target, "Spritch_AVF");
     });
 
-    Spritch_BVF.addEventListener("click", function () {
+    Spritch_BVF.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Spritch_BVF'";
         result.style.fontSize = "5em";
-        update_font();
+        update_font(e.target, "Spritch_BVF");
     });
 
-    Subbookkeeper.addEventListener("click", function () {
+    Subbookkeeper.addEventListener("click", function (e) {
         reset();
         result.style.fontFamily = "'Subbookkeeper'";
-        result.style.fontSize = "5em";
-        update_font();
+        result.style.fontSize = "4em";
+        update_font(e.target, "Subbookkeeper");
     });
 
     // fonts.forEach(function (font) {
@@ -397,23 +410,48 @@ window.onload = function () {
     //     });
     // });
 
-    variable_fonts.forEach(function (font) {
-        font.addEventListener("click", function () {
-            sliderContainer.style.display = "flex";
-        });
-    });
+    // variable_fonts.forEach(function (font) {
+    //     font.addEventListener("click", function () {
+    //         sliderContainer.style.display = "flex";
+    //     });
+    // });
 
     function reset() {
         result.style.fontSize = "3em";
     }
 
-    function update_font() {
+    function update_font(vf, variable_font) {
+        // console.log(vf);
+        console.log(FirstUse[`${variable_font}`]);
+        if (FirstUse[`${variable_font}`]) {
+            result.classList.remove("vf_animation");
+            result.classList.add("vf_animation");
+            console.log(result);
+        }
+        FirstUse[`${variable_font}`] = false;
+        // console.log("changed var", FirstUse[variable_font]);
         currentFontFamily = result.style.fontFamily;
         currentFontSize = result.style.fontSize;
     }
 
     // Update the font width when the slider value changes
-    widthSlider.addEventListener("input", function () {
+    document.body.addEventListener("keydown", function (event) {
+        // console.log("keydown");
+        if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
+            // Decrease the slider value by 1
+            widthSlider.value = parseInt(widthSlider.value) - 10;
+            console.log("decreasing");
+            set_variable();
+        } else if (event.key === "ArrowUp" || event.key === "ArrowRight") {
+            // Increase the slider value by 1
+            // Decrease the slider value by 1
+            widthSlider.value = parseInt(widthSlider.value) + 10;
+            console.log("increasing");
+            set_variable();
+        }
+    });
+
+    function set_variable() {
         let variableValue = widthSlider.value;
         if (
             currentFontFamily == "DeadisBetter" ||
@@ -438,5 +476,5 @@ window.onload = function () {
         }
         currentFontVariation = result.style.fontVariationSettings;
         currentSliderValue = widthSlider.value;
-    });
+    }
 };

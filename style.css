@@ -107,7 +107,7 @@ body {
 	top: 0;
 	bottom: 0;
 	right: 0;
-	display: flex;
+	display: none;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -143,4 +143,20 @@ input[type="range"]::-webkit-slider-thumb {
 	border-radius: 50%;
 	background-color: #333;fill: black;
 		stroke: none;
+}
+
+.vf_animation {
+	animation: vf_animate 1s infinite ease-in-out;
+	animation-iteration-count: 1;
+}
+
+@keyframes vf_animate {
+	from {
+		font-variation-settings: "wdth" 1000, "wght" 1000, "HGHT" 900;
+	}
+	to {
+		font-variation-settings: "wdth" 0,
+			"wght" 0,
+			"HGHT" 0;
+	}
 }
