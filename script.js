@@ -63,18 +63,23 @@ window.onload = function () {
 
     const resultContainer = document.getElementById("result-container");
     const result = document.getElementById("result");
+    const video = document.querySelector("video");
 
     const sliderContainer = document.querySelector(".slider-container");
     const widthSlider = document.getElementById("width-slider");
 
     let currentFontFamily = localStorage.getItem("savedFontFamily");
     let currentFontSize = localStorage.getItem("savedFontSize");
+    let currentFontColor = localStorage.getItem("savedFontColor");
     let currentFontVariation = localStorage.getItem("savedFontVariation");
     let currentSliderValue = localStorage.getItem("savedSliderValue");
+    let currentVideoDisplay = localStorage.getItem("savedVideoDisplay");
     result.style.fontFamily = currentFontFamily;
     result.style.fontSize = currentFontSize;
+    result.style.color = currentFontColor;
     result.style.fontVariationSettings = currentFontVariation;
     widthSlider.value = currentSliderValue;
+    video.style.display = currentVideoDisplay;
     console.log(currentFontFamily, currentFontSize, currentFontVariation);
 
     let FirstUse;
@@ -129,6 +134,8 @@ window.onload = function () {
 
                     localStorage.setItem("savedFontSize", currentFontSize);
 
+                    localStorage.setItem("savedFontColor", currentFontColor);
+
                     localStorage.setItem(
                         "savedFontVariation",
                         currentFontVariation
@@ -137,6 +144,11 @@ window.onload = function () {
                     localStorage.setItem(
                         "savedSliderValue",
                         currentSliderValue
+                    );
+
+                    localStorage.setItem(
+                        "savedVideoDisplay",
+                        currentVideoDisplay
                     );
 
                     localStorage.setItem("savedFirstUse", FirstUse);
@@ -199,6 +211,8 @@ window.onload = function () {
         reset();
         result.style.fontFamily = "'Billboards_stencil'";
         result.style.fontSize = "4em";
+        result.style.color = "black";
+        video.style.display = "block";
         update_font();
     });
 
@@ -404,52 +418,48 @@ window.onload = function () {
         update_font(e.target, "Subbookkeeper");
     });
 
-    // fonts.forEach(function (font) {
-    //     font.addEventListener("click", function () {
-    //         sliderContainer.style.display = "none";
-    //     });
-    // });
-
-    // variable_fonts.forEach(function (font) {
-    //     font.addEventListener("click", function () {
-    //         sliderContainer.style.display = "flex";
-    //     });
-    // });
-
     function reset() {
         result.style.fontSize = "3em";
+        result.style.color = "white";
+        video.style.display = "none";
     }
 
     function update_font(vf, variable_font) {
         // console.log(vf);
         console.log(FirstUse[`${variable_font}`]);
         if (FirstUse[`${variable_font}`]) {
-            result.classList.remove("vf_animation");
-            result.classList.add("vf_animation");
-            console.log(result);
+            // result.classList.remove("vf_animation");
+            // result.classList.add("vf_animation");
+            // console.log(result);
         }
         FirstUse[`${variable_font}`] = false;
         // console.log("changed var", FirstUse[variable_font]);
         currentFontFamily = result.style.fontFamily;
         currentFontSize = result.style.fontSize;
+        currentFontColor = result.style.color;
+        currentVideoDisplay = video.style.display;
     }
 
-    // Update the font width when the slider value changes
-    document.body.addEventListener("keydown", function (event) {
-        // console.log("keydown");
-        if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
-            // Decrease the slider value by 1
-            widthSlider.value = parseInt(widthSlider.value) - 10;
-            console.log("decreasing");
-            set_variable();
-        } else if (event.key === "ArrowUp" || event.key === "ArrowRight") {
-            // Increase the slider value by 1
-            // Decrease the slider value by 1
-            widthSlider.value = parseInt(widthSlider.value) + 10;
-            console.log("increasing");
-            set_variable();
-        }
+    widthSlider.addEventListener("input", () => {
+        sliderValue = parseInt(widthSlider.value);
+        set_variable();
     });
+
+    // Update the font width when the slider value changes
+    // document.body.addEventListener("keydown", function (event) {
+    //     // console.log("keydown");
+    //     if (event.key === "ArrowDown" || event.key === "ArrowLeft") {
+    //         // Decrease the slider value
+    //         widthSlider.value = parseInt(widthSlider.value) - 10;
+    //         console.log("decreasing");
+    //         set_variable();
+    //     } else if (event.key === "ArrowUp" || event.key === "ArrowRight") {
+    //         // Increase the slider value
+    //         widthSlider.value = parseInt(widthSlider.value) + 10;
+    //         console.log("increasing");
+    //         set_variable();
+    //     }
+    // });
 
     function set_variable() {
         let variableValue = widthSlider.value;
